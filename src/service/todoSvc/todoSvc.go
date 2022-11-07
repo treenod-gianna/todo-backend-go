@@ -1,6 +1,8 @@
 package todoSvc
 
-func GetTodos() []string {
-	todos := []string{"todo1", "todo2", "todo3"}
-	return todos
+import "todo-backend-go/src/models/todoModel"
+
+func GetTodo(id int) string {
+	todos := todoModel.GetTodos()
+	return todos[id]
 }
