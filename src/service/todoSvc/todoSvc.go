@@ -2,10 +2,17 @@ package todoSvc
 
 import "todo-backend-go/src/models/todoModel"
 
-func GetTodo(id int) (todoModel.Todo, error) {
-	todos, err := todoModel.GetTodos()
+func AddTodo(title string, userId int) error {
+	todo := todoModel.Todo{Title: title, UserId: userId}
+	err := todoModel.AddTodo(todo)
 	if err != nil {
-		return todoModel.Todo{}, err
+		return err
 	}
-	return todos[id], err
+	return err
+}
+
+func UpdateTodo(id, userId int, completed bool) error {
+	todo := todoModel.Todo{Id: id, Completed: completed, UserId: userId}
+	err := todoModel.UpdateTodo(todo)
+	return err
 }

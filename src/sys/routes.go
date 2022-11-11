@@ -1,7 +1,6 @@
 package sys
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"todo-backend-go/src/controllers/todoCtrl"
 )
@@ -13,12 +12,12 @@ type RouteInfo struct {
 
 func SetupRouteTable(r *gin.Engine) {
 	routePostInfos := []RouteInfo{
-		{"/todos", todoCtrl.Todos},
-		{"/todo", todoCtrl.Todo},
+		{"/getTodos", todoCtrl.GetTodos},
+		{"/addTodo", todoCtrl.AddTodo},
+		{"/updateTodo", todoCtrl.UpdateTodo},
 	}
 	for _, routeInfo := range routePostInfos {
 		//r.POST(routeInfo.Path, routeInfo.Handler)
-		fmt.Println("/pokopoko" + routeInfo.Path + ".php")
-		r.GET("/pokopoko"+routeInfo.Path+".php", routeInfo.Handler)
+		r.POST("/pokopoko"+routeInfo.Path+".php", routeInfo.Handler)
 	}
 }

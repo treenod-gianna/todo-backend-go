@@ -1,19 +1,28 @@
 package todoModel
 
 import (
-	"fmt"
 	"todo-backend-go/src/db"
 )
 
 type Todo struct {
-	Id        int
-	Title     string
-	Completed bool
-	UserId    int
+	Id        int    `json:"id" gorm:"column:id"`
+	Title     string `json:"title" gorm:"column:title"`
+	Completed bool   `json:"completed" gorm:"column:completed"`
+	UserId    int    `json:"userId" gorm:"column:userId"`
 }
 
-func GetTodos() (todos []Todo, err error) {
-	err = db.GetORM().Table("todos").Find(&todos).Error
-	fmt.Println(todos)
+func GetTodos(userId int) (todos []Todo, err error) {
+	err = db.GetORM().Table("todos").Where("userId = ?", userId).Find(&todos).Error
 	return
+}
+
+func AddTodo(todo Todo) error {
+	err := db.GetORM().Table("todos").Create(&todo).Error
+	return err
+}
+
+func UpdateTodo(todo Todo) error {
+	err := db.GetORM().Table("todos").Where("userId = ? AND id = ?", todo.UserId, todo.Id).
+		Update("completed", todo.Completed).Error
+	return err
 }
