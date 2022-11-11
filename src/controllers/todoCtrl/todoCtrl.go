@@ -1,6 +1,7 @@
 package todoCtrl
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"todo-backend-go/src/models/todoModel"
@@ -23,6 +24,9 @@ func GetTodos(c *gin.Context) {
 }
 
 func AddTodo(c *gin.Context) {
+	if q, has := c.GetPostForm("q"); has {
+		fmt.Println(q)
+	}
 	err := todoSvc.AddTodo("todo1", 1)
 	if err != nil {
 		panic(err)
