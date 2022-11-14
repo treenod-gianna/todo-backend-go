@@ -15,6 +15,7 @@ func SetupRouteTable(r *gin.Engine) {
 		{"/getTodos", todoCtrl.GetTodos},
 		{"/addTodo", todoCtrl.AddTodo},
 		{"/updateTodo", todoCtrl.UpdateTodo},
+		{"/updateTodoCsv", todoCtrl.UpdateTodoCsv},
 	}
 	for _, routeInfo := range routePostInfos {
 		//r.POST(routeInfo.Path, routeInfo.Handler)

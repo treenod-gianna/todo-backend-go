@@ -8,7 +8,7 @@ import (
 var orm *gorm.DB
 
 func OpenDatabase() *gorm.DB {
-	dsn := ""
+	dsn := "treenod:xmflshem@tcp(ec2-13-125-229-201.ap-northeast-2.compute.amazonaws.com:3306)/study"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")

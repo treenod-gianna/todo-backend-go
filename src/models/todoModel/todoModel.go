@@ -23,6 +23,6 @@ func AddTodo(todo Todo) error {
 
 func UpdateTodo(todo Todo) error {
 	err := db.GetORM().Table("todos").Where("userId = ? AND id = ?", todo.UserId, todo.Id).
-		Update("completed", todo.Completed).Error
+		Update("title", todo.Title).Error
 	return err
 }
